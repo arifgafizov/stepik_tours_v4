@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+  <head>
+{% block head %}
+    <title>CSSDesk</title>
+    <style type="text/css">
+
+      body { background-color: #2574b0; }
+
+    </style>
+{% endblock %}
+  </head>
+<body>
+  
+
+{% block container %}
+    <h1 class="display-5 mt-4">Летим из <span data-test="from">{{departure_city}}</span></h1>
+    <p class="mb-4" >Найдено <span data-test="tourcount">{{departure_count}}</span> тура, от <span data-test="pricemin">{{departure_min_price}}</span> до <span data-test="pricemax">{{departure_max_price}}</span> и от <span data-test="nightsmax">{{departure_min_nights}}</span> дней до <span data-test="nightsmax">{{departure_max_nights}}</span> дней</p>
+    <!-- HERO -->
+
+
+
+    <!-- CARDS -->
+
+      <div class="row mt-5" data-test="cards">
+
+        {% for departure_tour in departure_tours %}
+          {% if departure_tour.0.departure == departure %}
+
+        <div class="col-4" data-test="card">
+            <div class="card mb-3" >
+            <img src={{departure_tour.0.picture}} class="card-img-top img-fluid" data-test="picture">
+            <div class="card-body">
+              <h5 class="card-title">{{departure_tour.0.country}}: {{departure_tour.0.title}}   {{departure_tour.0.stars}}★</h5>
+             <p class="card-text">{{departure_tour.0.description}}</p>
+             <p class="card-text"><b>{{departure_tour.0.date}}, {{departure_tour.0.nights}} дней, {{departure_tour.0.price}} Р</b></p>
+                <a href="/tour/{{departure_tour.1}}/" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+            </div>
+        </div>
+        </div>
+
+          {% endif %}
+        {% endfor %}
+
+
+    </div>    
+
+</div>
+{% endblock %}
+
+</body>
+</html>
+  </body>
+</html>

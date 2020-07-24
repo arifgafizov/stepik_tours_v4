@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+  <head>
+{% block head %}
+    <title>CSSDesk</title>
+    <style type="text/css">
+
+      body { background-color: #2574b0; }
+
+    </style>
+{% endblock %}
+  </head>
+{% block title %}
+    <title>{{tours.title}} {{tours.stars}} ★</title>
+{% endblock %}
+  
+
+{% block container %}
+    <h1 class="display-3 mt-4" data-test="title">{{tours.title}} {{tours.stars}} ★</h1>
+
+    <!-- HERO -->
+    <p class="lead" data-test="lead"><span data-test="country">{{tours.country}}</span> <span data-text="departure">{{departures_id}}</span> <span data-text="nights">{{tours.nights}}</span> ночей</p>
+
+    <img data-test="picture" src={{tours.picture}} class="w-75" alt="">
+    
+    <p class="my-4 w-75" data-test="description">{{tours.description}}</p>
+
+    <a href="" class="btn btn-success btn-lg" data-test="buybutton">Купить тур за <span data-test="price">{{tours.price}}</span></a>
+</div>
+
+{% endblock %}

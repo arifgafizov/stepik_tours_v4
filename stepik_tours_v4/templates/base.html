@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+{% block head %}
+    <title>CSSDesk</title>
+    <style type="text/css">
+
+      body { background-color: #fff; }
+
+    </style>
+{% endblock %}
+  </head>
+  <body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{% block title %}
+    <title>Stepik Travel</title>
+{% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="container mt-3">
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(187, 240, 230, 0.4); box-shadow: 0px 0 10px 1px rgba(187, 240, 230, 0.8);">
+      <a class="navbar-brand" data-test="logo" href="/">Stepik Travel</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav" data-test="navigation">
+          {% for dep_key, dep_value in departures.items %}
+          <li {% if dep_key in request.path %} class="nav-item active" {% endif %}>
+            <a class="nav-link" href="/departure/{{dep_key}}/" data-test="navlink"><h6>{{dep_value}}</h6></a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+
+{% block container %} 
+    <!-- HERO -->
+
+    <div style="background-image: url(https://proza.ru/pics/2016/09/22/1883.jpg);
+                background-size: cover;
+                box-shadow: 0px 0 12px 5px rgba(97, 81, 2, 0.9);
+                opacity: 0.5;
+                color: black" class="jumbotron text-center mt-4">
+      <h1 class="display-4"><b>Всякие туры</b></h1>
+      <p class="lead"><b>Для тех, кого отвлекают дома</b></p>
+      <p class="mt-5 w-50 mx-auto"><b>Лучшие направления,где никто не будет вам мешать сидеть на берегу и изучать программирование, дизайн, разработку игр и управление продуктами</b></p>
+    </div>
+
+    <!-- CARDS -->
+
+    <div class="row mt-5" data-test="cards">
+
+        {% for tour_id_k, tour_id_v in tours.items %}
+          {% for random_id_tour in random_list_id_tours %}
+            {% if random_id_tour == tour_id_k %}
+        <div class="col-4" data-test="card">
+            <div class="card mb-3" >
+            <img src={{tour_id_v.picture}} class="card-img-top img-fluid" data-test="picture">
+            <div class="card-body">
+              <h5 class="card-title">{{tour_id_v.country}}: {{tour_id_v.title}}</h5>
+             <p class="card-text">{{tour_id_v.description}}</p>
+             <p class="card-text"><b>{{tour_id_v.date}}, {{tour_id_v.nights}} дней, {{tour_id_v.price}} Р
+                {{tour_id_v.stars}} ★</b></p>
+                <a href="/tour/{{tour_id_k}}/" class="btn btn-sm btn-primary" data-test="tourlink">Подробнее</a>
+            </div>
+            </div>
+        </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+</body>
+</html>
+  </body>
+</html>
