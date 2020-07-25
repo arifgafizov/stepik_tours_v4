@@ -13,7 +13,6 @@ class DepartureView(View):
         data = {"departure_city": departures[departure][3:],
                 'departure_tours': departure_tours,
                 'departure': departure,
-                'departures': departures,
                 'departure_count': departures_list[departure][0],
                 'departure_min_price': min(departures_list[departure][1]),
                 'departure_max_price': max(departures_list[departure][1]),
@@ -25,13 +24,13 @@ class DepartureView(View):
 
 class TourView(View):
     def get(self, request, id):
-        data = {'tours': tours[id], 'departures_id': departures[tours[id]['departure']], 'departures': departures}
+        data = {'tours': tours[id], 'departures_id': departures[tours[id]['departure']]}
         return render(request, 'tours/tour.html', context=data)
 
 
 class BaseView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'base.html', {'random_list_id_tours': random.sample(range(1, 17), 6),'tours': tours, 'departures': departures})
+        return render(request, 'base.html', {'random_list_id_tours': random.sample(range(1, 17), 6),'tours': tours})
 
 
 def custom_handler404(request, exception):
