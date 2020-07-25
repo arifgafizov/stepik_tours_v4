@@ -30,7 +30,7 @@ class TourView(View):
 
 class BaseView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'base.html', {'random_list_id_tours': random.sample(range(1, 17), 6),'tours': tours})
+        return render(request, 'base.html', {'random_list_id_tours': random.sample(range(1, 17), 6), 'tours': tours})
 
 
 def custom_handler404(request, exception):

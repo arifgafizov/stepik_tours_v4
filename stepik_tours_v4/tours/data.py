@@ -257,7 +257,6 @@ for tour_value in tours.values():
 for tour_value in tours.values():
     for departure in departures:
         if departure == tour_value["departure"]:
-            departures_list[departure][0] += 1      
+            departures_list[departure][0] += 1
             departures_list[departure][1].append(tour_value["price"])
             departures_list[departure][2].append(tour_value["nights"])
-    
